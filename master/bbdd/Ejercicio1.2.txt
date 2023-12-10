@@ -1,0 +1,54 @@
+PAQUETE(codigo_barras,dim,peso)
+CLIENTE(nombre,DNI,telf,dir,provincia,pais)
+DRON(nserie,potencia,carga_max)
+
+LIBRO(título,autor,año,editorial,num_pags)
+REVISTA(nombre,num,fecha,precio,editorial,num_pags)
+SOPORTE(titulo,tipo_sop,tipo_cont,duración,fecha)
+
+create table paquetes(
+codigo_barras number(13),
+dim number(6) not null,
+peso number(4),
+constraint pk_paquete primary key (codigo_barras));
+
+create table clientes(
+nombre varchar2(25) not null,
+DNI varchar2(9),
+telf varchar2(9),
+dir varchar2(50),
+provincia varchar2(15),
+pais varchar2(20),
+constraint pk_cliente primary key (DNI));
+
+create table drones(
+nserie varchar2(30),
+potencia number(4),
+carga_max number(4),
+constraint pk_drone primary key (nserie));
+
+create table libro(
+titulo varchar2(25),
+autor varchar2(25) not null,
+año number(4),
+editorial varchar2(15) not null,
+num_pags number(4),
+constraint pk_libro primary key (titulo));
+
+create table revista(
+nombre varchar2(25),
+num number(4) not null,
+fecha DATE,
+precio number (3),
+editorial varchar2(15) not null,
+num_pags number(3),
+constraint pk_revista primary key (nombre));
+
+create table soporte(
+titulo varchar2(25),
+tipo_sop varchar2(10),
+tipo_cont varchar(15),
+duracion number (3),
+fecha DATE,
+constraint pk_soporte primary key (titulo));
+

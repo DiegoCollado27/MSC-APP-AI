@@ -1,0 +1,21 @@
+SELECT table_name FROM all_tables WHERE owner='IAA10';
+SELECT title_year 
+FROM iaa10.cast
+WHERE country!='Spain' AND IS NOT null;
+
+WITH A as (SELECT movie_title title FROM iaa10.movies WHERE UPPER(country)!='Spain' AND country IS NOT null)
+SELECT DISTINCT actor FROM A JOIN iaa10.casts USING (title);
+
+SELECT movie_title FROM iaa10.movies JOIN iaa10.series ON (iaa10.movies.movie_title=iaa10.series.title);
+
+SELECT director_name FROM iaa10.movies WHERE director_facebook_likes < movie_facebook_likes;
+
+SELECT movie_title,title_year AS older FROM iaa10.movies WHERE (SELECT MIN(title_year) FROM iaa10.movies)=title_year;
+
+ SELECT DISTINCT title FROM iaa10.taps_movies WHERE to_char(view_datetime,'dd/MM')='25/10';
+
+SELECT DISTINCT title FROM iaa10.taps_movies WHERE to_char(view_datetime,'MM')!='02';
+
+SELECT surname,name,contract_type,startdate,enddate FROM iaa10.clients cl JOIN iaa10.contracts co ON (co.enddate>=SYSDATE) ORDER BY surname,name ASC;
+
+SELECT director_name FROM iaa10.movies WHERE director_facebook_likes + SUM(SELECT actor_facebook_likes FROM iaa10.players) < movie_facebook_likes;

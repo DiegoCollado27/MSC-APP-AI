@@ -1,0 +1,10 @@
+Si en vez de tratar los fotogramas cogieramos la imagen de la webcam directamente, afectaria en puntos clave:
+
+Tamano de la imagen:
+El modelo actual esta configurado para trabajar con imágenes de un tamaño específico (192x192 píxeles). Si se omitiera el redimensionamiento, el modelo recibiría imágenes en la resolución nativa de la cámara, que puede variar ampliamente. Esto podría resultar en una disminución significativa de la precisión, ya que el modelo puede no estar preparado para manejar variaciones en el tamaño de la entrada. O lo que ocurre en este caso y es que el modelo no funciona correctamente.
+
+Rendimiento:
+Al procesar imágenes de mayor resolución directamente de la cámara web, aumentaría la carga computacional. Esto podría resultar en una disminución del rendimiento, especialmente en dispositivos con capacidades de procesamiento limitadas o al intentar realizar clasificaciones en tiempo real.
+
+Aspecto y orientacion:
+El código también incluye una transformación para espejar la imagen. Si se elimina este paso, podría haber discrepancias entre la orientación de la imagen capturada y cómo el modelo fue entrenado para interpretar los datos. Este error ademas se comento en clase.

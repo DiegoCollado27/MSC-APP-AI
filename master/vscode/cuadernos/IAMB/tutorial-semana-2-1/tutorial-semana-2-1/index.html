@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="index.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+  </head>
+  <body>
+    <h1>Detección de objetos con COCO-SSD en TensorFlow.js</h1>
+    <p>
+      Espera para que el módelo COCO-SSD se haya cargado antes de habilitar la
+      cámara web y empezar con la detección de objetos
+    </p>
+
+    <section id="app" class="invisible">
+      <div id="liveView" class="camView">
+        <button id="webcamButton">Habilitar cámara web</button>
+        <video id="webcam" autoplay muted width="640" height="480"></video>
+      </div>
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>

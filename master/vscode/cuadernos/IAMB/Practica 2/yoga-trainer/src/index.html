@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Yoga Trainer</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="index.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <style>
+        .separator {
+            border-left: 5px solid black;
+            height: 10px;
+            display: inline-block;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Yoga Trainer</h1>
+    <section>
+        <canvas id="canvas" width="300" height="300"></canvas>
+        <img id="img" width="300" height="300" src="">
+        <video
+        playsinline
+        muted
+        id="webcam"
+        width="300"
+        height="300"
+        class = "flipHorizontal">
+    </video>
+        <p>
+            <span>Pose detectada: </span><span id="txt-prediction"></span>
+        </p>
+    </section>
+    <button id="btn-load-model">Load model</button>
+    <button id="btn-test-model">Test model</button>
+    <div class="separator"></div>
+    <button id="btn-load-movenet">Load Movenet</button>    
+    <button id="btn-test-movenet">Test Dataset Extra</button>     
+    <button id="btn-webcam">Test Webcam</button>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

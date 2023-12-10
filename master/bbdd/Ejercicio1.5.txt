@@ -1,0 +1,65 @@
+create table titulacion(
+nombre varchar2(50),
+constraint pk_Titulacion primary key (nombre));
+
+create table asignatura(
+nombre varchar2(50),
+titulacion varchar2(50),
+creditos number(2) NOT NULL,
+Profesor varchar2(50) NOT NULL,
+constraint pk_asignatura primary key (nombre,titulacion),
+constraint fk_asignautra_titulacion foreign key (titulacion) references titulacion);
+
+create table alumno(
+nia number(9),
+nombre varchar2(50) NOT NULL,
+apelido1 varchar2(50) NOT NULL,
+apellido2 varchar2(50),
+f_nacimiento DATE,
+constraint pk_alumno PRIMARY KEY (nia));
+
+create table matricula(
+asig_nombre varchar2(50),
+asig_titulacion varchar2(50),
+NIA number(9),
+constraint pk_matricula PRIMARY KEY (asig_nombre,asig_titulacion,NIA),
+constraint pk_matricula_asignatura FOREIGN KEY (asig_nombre,asig_titulacion) REFERENCES asignatura(nombre,titulacion),
+constraint pk_matricula_alumno FOREIGN KEY (NIA) REFERENCES alumno ON DELETE CASCADE);
+
+create table miembro(
+asig_nombre varchar2(50),
+asig_titulacion varchar2(50),
+nia number(9),
+numGrupo number(2) NOT NULL,
+constraint pk_miembro PRIMARY KEY (asig_nombre,asig_titulacion,NIA),
+constraint fk_miembro_matricula FOREIGN KEY (asig_nombre,asig_titulacion,NIA) REFERENCES matricula(asig_nombre,asig_titulacion,NIA),
+fk
+
+create table grupo(
+asig_nombre varchar2(50),
+asig_titulacion varchar2(50),
+numgrupo number(2),
+constraint pk_grupo PRIMARY KEY (asig_nombre,asig_titulacion,numgrupo));
+
+create table practica(
+asig_nombre varchar2(50),
+asig_titulacion varchar2(50),
+orden number(2),
+f_ini DATE,
+f_fin DATE,
+constraint pk_practica PRIMARY KEY (asig_nombre,asig_titulacion,orden),
+constraint fk_practica_asignatura FOREIGN KEY (asig_nombre,asig_titulacion) REFERENCES asignatura(nombre,titulacion));
+
+
+create table entrega(
+numpract number (2),
+asig_nombre varchar2(50),
+asig_titulacion varchar2(50),
+numgrupo number(2),
+fecha_entrega DATE NOT NULL,
+calificacion number(2),
+constraint pk_entrega PRIMARY KEY (numpract,asig_nombre,asig_titulacion,numgrupo),
+constraint fk_entrega_grupo FOREIGN KEY (asig_nombre,asig_titulacion,numgrupo) REFERENCES grupo(asig_nombre,asig_titulacion,numgrupo),
+constraint fk_entrega_practica FOREIGN KEY (asig_nombre,asig_titulacion,numpract) REFERENCES practica(asig_nombre,asig_titulacion,orden));
+
+
